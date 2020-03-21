@@ -3,8 +3,7 @@ package com.melvic.archia.ast
 sealed trait Clause
 
 object Clause {
-  sealed trait Leaf extends Clause
-  sealed trait Compound extends Clause
-
-
+  trait Leaf extends Clause
+  trait Compound extends Clause
+  case object NoClause extends Clause
 }
