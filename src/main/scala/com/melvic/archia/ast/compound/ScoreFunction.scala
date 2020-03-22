@@ -1,4 +1,6 @@
-package com.melvic.archia.ast
+package com.melvic.archia.ast.compound
+
+import com.melvic.archia.ast.Score
 
 sealed trait ScoreFunction
 

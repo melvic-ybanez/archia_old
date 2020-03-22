@@ -1,4 +1,4 @@
-package com.melvic.archia.ast
+package com.melvic.archia.ast.compound
 
 trait KeyValue {
   type Key
