@@ -12,5 +12,11 @@ object ScoreFunction {
     modifier: FieldModifier = FieldModifier.None,
     missing: Int = 0
   ) extends ScoreFunction
-  final case class DecayFunction() extends ScoreFunction
+
+  final case class DecayFunction(
+    decayFunction: DecayFunctionType,
+    field: DecayFunctionField,
+    multiValueMode: Option[MultiValueMode],
+
+  ) extends ScoreFunction
 }
