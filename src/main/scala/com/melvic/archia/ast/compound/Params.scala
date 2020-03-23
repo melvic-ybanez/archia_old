@@ -1,5 +1,6 @@
 package com.melvic.archia.ast.compound
 
+import com.melvic.archia.ast.ParamValues.MinimumShouldMatchValue
 import com.melvic.archia.ast.{Query, Score}
 
 object Params {
@@ -12,7 +13,7 @@ object Params {
     final case class Should(queries: Vector[Query]) extends Bool
     final case class MustNot(queries: Vector[Query]) extends Bool
     final case class Filter(queries: Vector[Query]) extends Bool
-    final case class MinimumShouldWatch(value: Float) extends Bool
+    final case class MinimumShouldMatch(value: MinimumShouldMatchValue) extends Bool
   }
 
   object FunctionScore {

@@ -7,6 +7,6 @@ sealed trait FullText extends Query
 object FullText {
   final case class Match(
     field: String,
-    query: QueryField
+    query: QueryField,
   )
 }
