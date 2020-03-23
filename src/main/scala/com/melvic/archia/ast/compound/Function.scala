@@ -1,9 +1,9 @@
 package com.melvic.archia.ast.compound
 
-import com.melvic.archia.ast.Clause
+import com.melvic.archia.ast.Query
 
 final case class Function(
-  filter: Clause,
+  filter: Query,
   weight: Int,
   scoreFunction: Option[ScoreFunction] = None
 )
