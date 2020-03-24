@@ -10,6 +10,8 @@ target
 *.iws
 out
 
+Main
+
 tests.sc
 
 */META-INF/*
