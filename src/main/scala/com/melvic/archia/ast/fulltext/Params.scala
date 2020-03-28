@@ -20,7 +20,9 @@ object Params {
       Fuzziness :+: MaxExpansions :+: PrefixLength :+: Transpositions :+: FuzzyRewrite :+:
       Lenient :+: Operator :+: MinimumShouldMatch :+: ZeroTermsQuery :+: CutOffFrequency :+: CNil
 
-    final case class QueryField(value: String :+: ESNumeric :+: ESDate :+: CNil)
+    type QueryFieldValue = String :+: ESNumeric :+: ESDate :+: CNil
+
+    final case class QueryField(value: QueryFieldValue)
     final case class Analyzer(value: String)
     final case class AutoGenerateSynonymsPhraseQuery(value: Boolean)
     final case class Fuzziness(value: FuzzinessValue)
