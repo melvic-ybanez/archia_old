@@ -1,22 +1,17 @@
 package com.melvic.archia.dsl
 
 import com.melvic.archia.ast.fulltext.FullText.Match
-import com.melvic.archia.ast.fulltext.Params.MatchParam.{MatchField, MatchFieldParam, QueryField, QueryFieldValue}
-import com.melvic.archia.dsl.Error.MissingField
-import .query
-import com.melvic.archia.dsl.MatchDSL.MatchParam.query
-import implicits._
-import shapeless.{:+:, CNil, Poly1}
-import shapeless.ops.coproduct.{Inject, Selector}
+import com.melvic.archia.ast.fulltext.Params.MatchParam._
+import com.melvic.archia.dsl.implicits._
 
 import scala.annotation.tailrec
 import scala.language.implicitConversions
 
 trait MatchDSL {
-  def _match(field: MatchField): ParseResult[Match] = Match(field).!
+  implicit class MatchFieldOps(fieldName: String) extends MultiValueOp[MatchFieldParam, MatchField] {
+    override type Context = MatchField
 
-  implicit class MatchFieldOps(fieldName: String) extends MultiValue[MatchFieldParam, MatchField] {
-    override def :=(params: Vector[MatchFieldParam]) = {
+    override def ::=(params: Vector[MatchFieldParam]) = {
       type Params = Vector[MatchFieldParam]
 
       @tailrec
@@ -36,6 +31,17 @@ trait MatchDSL {
         query <- queryField.require("Query")
         field <- MatchField(fieldName, query, extras).!
       } yield field
+    }
+  }
+}
+
+object MatchDSL {
+  sealed trait _match
+
+  object _match extends _match {
+    implicit class matchOps(value: _match) extends SingleValueOp[MatchField, MatchField] {
+      override type Context = MatchField
+      override def :=(value: MatchField) = value.!
     }
   }
 }

@@ -6,7 +6,7 @@ import com.melvic.archia.ast.{ESDate, ESNumeric}
 import com.melvic.archia.ast.ParamValues.{FuzzinessValue, MinimumShouldMatchValue, RewriteValue}
 import com.melvic.archia.ast.fulltext.Params.MatchParam.Operator.{And, Or}
 import com.melvic.archia.ast.fulltext.Params.MatchParam.ZeroTermsQuery.{All, NoTerms}
-import shapeless.{:+:, CNil, Inl}
+import shapeless.{:+:, CNil, HNil, Inl}
 
 object Params {
   object MatchParam {

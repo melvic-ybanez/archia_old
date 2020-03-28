@@ -1,24 +1,24 @@
 package com.melvic.archia.dsl
 
-import com.melvic.archia.dsl.Error.MissingField
+import com.melvic.archia.dsl.Errors.MissingField
 import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
-object implicits {
-  implicit def asInjectable[C <: Coproduct, A](value: A)(implicit inject: Inject[C, A]): C =
-    value.as[C]
+trait implicits {
+  //implicit def asInjectable[C <: Coproduct, A](value: A)(implicit inject: Inject[C, A]): C =
+    //value.as[C]
 
   implicit class ResultOps[A](value: A) {
     def ! = Right(value)
   }
 
   implicit class OptionOps[A](value: Option[A]) {
-    def require(fieldName: String): Either[MissingField, A] =
-      value.toRight(MissingField(fieldName))
+    def require(fieldName: String): ParseResult[A] =
+      value.toRight(MissingField(fieldName).as[Error] +: Vector())
   }
 
   implicit class VectorOps[A](values: Vector[A]) {
-    def require(fieldName: String): Either[MissingField, A] =
+    def require(fieldName: String): ParseResult[A] =
       values.headOption.require(fieldName)
   }
 
@@ -27,3 +27,5 @@ object implicits {
       Inject[C, A].apply(value)
   }
 }
+
+object implicits extends implicits

@@ -1,5 +1,9 @@
 package com.melvic.archia
 
-package object dsl extends MatchDSL with Params {
-  type ParseResult[A] = Either[Error, A]
+import com.melvic.archia.dsl.Errors.MissingField
+import shapeless.{:+:, CNil}
+
+package object dsl extends implicits with MatchDSL {
+  type ParseResult[A] = Either[Vector[Error], A]
+  type Error = MissingField :+: CNil
 }
