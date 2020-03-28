@@ -5,6 +5,9 @@ import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
 object implicits {
+  implicit def asInjectable[C <: Coproduct, A](value: A)(implicit inject: Inject[C, A]): C =
+    value.as[C]
+
   implicit class ResultOps[A](value: A) {
     def ! = Right(value)
   }
@@ -20,7 +23,7 @@ object implicits {
   }
 
   implicit class CoproductOps[A](value: A) {
-    def inject[C <: Coproduct](implicit inject: Inject[C, A]): C =
+    def as[C <: Coproduct](implicit inject: Inject[C, A]): C =
       Inject[C, A].apply(value)
   }
 }
