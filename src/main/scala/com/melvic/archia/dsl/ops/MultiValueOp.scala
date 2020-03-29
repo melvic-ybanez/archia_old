@@ -1,9 +1,9 @@
-package com.melvic.archia.dsl
+package com.melvic.archia.dsl.ops
 
-import shapeless.Coproduct
+import com.melvic.archia.dsl.ParseResult
 
 trait MultiValueOp[I, O] {
-  type Context <: Coproduct
+  type Context
 
   def ::=(params: Vector[I]): ParseResult[Context]
 

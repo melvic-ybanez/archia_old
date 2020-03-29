@@ -1,9 +1,11 @@
-package com.melvic.archia.dsl
+package com.melvic.archia.dsl.ops
 
+import com.melvic.archia.dsl._
+import com.melvic.archia.dsl.ParseResult
 import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
-trait SingleValueOp[C <: Coproduct, O] {
+trait SingleCoproductOp[C <: Coproduct, O] {
   def ::=(value: C): ParseResult[O]
 
   def :=[A](value: A)(implicit inject: Inject[C, A]): ParseResult[O] =

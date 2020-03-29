@@ -3,12 +3,13 @@ package com.melvic.archia.dsl
 import com.melvic.archia.ast.fulltext.FullText.Match
 import com.melvic.archia.ast.fulltext.Params.MatchParam._
 import com.melvic.archia.dsl.implicits._
+import com.melvic.archia.dsl.ops.{MultiValueOp, SingleCoproductOp, SingleValueOp}
 
 import scala.annotation.tailrec
 import scala.language.implicitConversions
 
 trait MatchDSL {
-  /*implicit class MatchFieldOps(fieldName: String) extends MultiValueOp[MatchFieldParam, MatchField] {
+  implicit class MatchFieldOps(fieldName: String) extends MultiValueOp[MatchFieldParam, MatchField] {
     override type Context = MatchField
 
     override def ::=(params: Vector[MatchFieldParam]) = {
@@ -32,15 +33,15 @@ trait MatchDSL {
         field <- MatchField(fieldName, query, extras).!
       } yield field
     }
-  }*/
+  }
 }
 
 object MatchDSL {
   sealed trait _match
 
-  /*object _match extends _match {
+  object _match extends _match {
     implicit class matchOps(value: _match) extends SingleValueOp[MatchField, MatchField] {
-      override def ::=(value: MatchField) = value.!
+      override def :=(value: MatchField) = value.!
     }
-  }*/
+  }
 }
