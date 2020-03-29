@@ -3,11 +3,12 @@ package com.melvic.archia.dsl
 import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
-trait SingleValueOp[I, O] {
-  type Context <: Coproduct
+trait SingleValueOp[C <: Coproduct, O] {
+  def ::=(value: C): ParseResult[O]
 
-  def :=(value: I): ParseResult[O]
+  def :=[A](value: A)(implicit inject: Inject[C, A]): ParseResult[O] =
+    ::=(value.as[C])
 
-  def :=(value: ParseResult[I])(implicit inject: Inject[Context, O]): ParseResult[Context] =
-    value.flatMap(:=(_).map(_.as[Context]))
+  def :=[A](result: ParseResult[A])(implicit inject: Inject[C, A]): ParseResult[O] =
+    result.flatMap(:=[A])
 }

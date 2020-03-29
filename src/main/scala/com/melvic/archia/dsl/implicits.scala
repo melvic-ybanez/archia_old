@@ -9,7 +9,7 @@ trait implicits {
     //value.as[C]
 
   implicit class ResultOps[A](value: A) {
-    def ! = Right(value)
+    def ! : ParseResult[A] = Right(value)
   }
 
   implicit class OptionOps[A](value: Option[A]) {

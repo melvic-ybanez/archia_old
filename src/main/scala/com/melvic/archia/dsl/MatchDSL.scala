@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 import scala.language.implicitConversions
 
 trait MatchDSL {
-  implicit class MatchFieldOps(fieldName: String) extends MultiValueOp[MatchFieldParam, MatchField] {
+  /*implicit class MatchFieldOps(fieldName: String) extends MultiValueOp[MatchFieldParam, MatchField] {
     override type Context = MatchField
 
     override def ::=(params: Vector[MatchFieldParam]) = {
@@ -32,16 +32,15 @@ trait MatchDSL {
         field <- MatchField(fieldName, query, extras).!
       } yield field
     }
-  }
+  }*/
 }
 
 object MatchDSL {
   sealed trait _match
 
-  object _match extends _match {
+  /*object _match extends _match {
     implicit class matchOps(value: _match) extends SingleValueOp[MatchField, MatchField] {
-      override type Context = MatchField
-      override def :=(value: MatchField) = value.!
+      override def ::=(value: MatchField) = value.!
     }
-  }
+  }*/
 }

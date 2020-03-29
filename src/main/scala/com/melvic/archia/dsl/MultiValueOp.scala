@@ -14,9 +14,9 @@ trait MultiValueOp[I, O] {
     }
 
     val result = ::=(validParams)
-    result.fold(errs => Left(errs ++ errors.flatten), Right(_))
+    result.fold[ParseResult[Context]](errs => Left(errs ++ errors.flatten), Right(_))
   }
 
   def :=(params: ParseResult[I]*): ParseResult[Context] = :=(params.toVector)
-  def :=(params: I*): ParseResult[Context] = ::=(params.toVector)
+  //def :=(params: I*): ParseResult[Context] = ::=(params.toVector)
 }
