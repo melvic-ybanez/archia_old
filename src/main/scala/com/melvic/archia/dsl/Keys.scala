@@ -1,11 +1,11 @@
 package com.melvic.archia.dsl
 
 import com.melvic.archia.ast.fulltext.Params.MatchParam.{Analyzer, QueryField, QueryFieldValue}
-import com.melvic.archia.dsl.ops.{LeafCoproductOps, LeafOps}
+import com.melvic.archia.dsl.ops.{LeafCOps, LeafOps}
 
 trait Keys {
   object query {
-    implicit class queryOps(value: query.type) extends LeafCoproductOps[QueryFieldValue, QueryField] {
+    implicit class queryOps(value: query.type) extends LeafCOps[QueryFieldValue, QueryField] {
       override def ::=(value: QueryFieldValue) = QueryField(value).!
     }
   }

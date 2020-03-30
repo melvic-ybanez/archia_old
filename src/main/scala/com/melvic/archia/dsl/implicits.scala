@@ -5,8 +5,9 @@ import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
 trait implicits {
-  //implicit def asInjectable[C <: Coproduct, A](value: A)(implicit inject: Inject[C, A]): C =
-    //value.as[C]
+  implicit def injectParseResult[C <: Coproduct, A](parseResult: ParseResult[A])(
+    implicit inject: Inject[C, A]
+  ): ParseResult[C] = parseResult.map(_.as[C])
 
   implicit class ResultOps[A](value: A) {
     def ! : ParseResult[A] = Right(value)

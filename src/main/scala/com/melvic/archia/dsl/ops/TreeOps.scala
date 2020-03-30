@@ -8,13 +8,13 @@ import com.melvic.archia.dsl._
 trait TreeOps[C <: Coproduct, O] {
   def ::=(params: Vector[C]): ParseResult[O]
 
-  def :=[A](params: ParseResult[A]*)(implicit inject: Inject[C, A]): ParseResult[O] = {
+  def :=(params: ParseResult[C]*): ParseResult[O] = {
     val (errors, validParams) = params.partitionMap {
       case Left(errors) => Left(errors)
       case Right(param) => Right(param)
     }
 
-    val result = ::=(validParams.map(_.as[C]).toVector)
+    val result = ::=(validParams.toVector)
     result.fold[ParseResult[O]](errs => Left(errs ++ errors.flatten), Right(_))
   }
 }

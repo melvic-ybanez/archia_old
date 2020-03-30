@@ -3,7 +3,7 @@ package com.melvic.archia.dsl
 import com.melvic.archia.ast.fulltext.FullText.Match
 import com.melvic.archia.ast.fulltext.Params.MatchParam._
 import com.melvic.archia.dsl.implicits._
-import com.melvic.archia.dsl.ops.{TreeOps, LeafCoproductOps, LeafOps}
+import com.melvic.archia.dsl.ops.{TreeOps, LeafCOps, LeafOps}
 
 import scala.annotation.tailrec
 import scala.language.implicitConversions
