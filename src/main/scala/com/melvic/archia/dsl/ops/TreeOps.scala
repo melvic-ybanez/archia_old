@@ -2,8 +2,6 @@ package com.melvic.archia.dsl.ops
 
 import com.melvic.archia.dsl.ParseResult
 import shapeless.Coproduct
-import shapeless.ops.coproduct.Inject
-import com.melvic.archia.dsl._
 
 trait TreeOps[C <: Coproduct, O] {
   def ::=(params: Vector[C]): ParseResult[O]

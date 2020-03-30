@@ -1,6 +1,6 @@
 package com.melvic.archia.ast.compound
 
-import com.melvic.archia.ast.{Boost, Query, Score}
+import com.melvic.archia.ast.{Boost, Query}
 
 trait Compound extends Query
 

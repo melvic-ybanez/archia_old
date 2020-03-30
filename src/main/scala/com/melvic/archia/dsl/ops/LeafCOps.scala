@@ -1,8 +1,6 @@
 package com.melvic.archia.dsl.ops
 
-import com.melvic.archia.ast.fulltext.Params.MatchParam.{QueryField, QueryFieldValue}
-import com.melvic.archia.dsl._
-import com.melvic.archia.dsl.ParseResult
+import com.melvic.archia.dsl.{ParseResult, _}
 import shapeless.Coproduct
 import shapeless.ops.coproduct.Inject
 
